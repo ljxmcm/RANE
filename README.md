@@ -9,6 +9,7 @@ The codebase is implemented in Python 3.5.2. package versions used for developme
 numpy        1.15.4  
 sklearn      0.19.0  
 tensorflow   1.12.0  
+networkx     2.0
 ```
 
 ## Input 
