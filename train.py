@@ -3,7 +3,7 @@ import tensorflow as tf
 from sklearn.preprocessing import normalize
 
 #GPU training
-class model():
+class T_Model():
     def __init__(self, T):
         self.T = T
         self.T_flat = self.T.flatten()
@@ -12,7 +12,7 @@ class model():
         self.batch_size = 500000
         self.cur_epoch = 0
         
-        self.cur_seed = 17
+        self.cur_seed = 0
         self.learning_rate = 0.01
         
         tf.reset_default_graph()
@@ -68,9 +68,6 @@ class model():
         for i, embedding in enumerate(embeddings):
             vectors[i] = embedding
         return vectors
-    
-    def tf_close(self):
-        self.session.close()
 
 #CPU training    
 def train(T, dim=50, epochs=20, lamb=0.2):
