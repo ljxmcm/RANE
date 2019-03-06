@@ -80,7 +80,7 @@ def read_node_label(filename):
 def evaluation(filename, Vectors, clf_ratio):
     vectors = Vectors
     X, Y = read_node_label(filename)
-    print("Training classifier", filename)
+    #print("Training classifier", filename)
     clf = Classifier(vectors=vectors, clf=LogisticRegression(solver='liblinear'))
     return clf.split_train_evaluate(X, Y, clf_ratio)
 

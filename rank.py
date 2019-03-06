@@ -28,9 +28,12 @@ class R_Model():
         X =  np.array(X)
         node_size =X.shape[0]
         X_tfidf = np.zeros_like(X)
-        for i in range(X.shape[1]):
-            if np.sum(X[:, i]) > 0:
-                X_tfidf[:,i] = X[:,i] * np.log(node_size/np.sum(X[:,i]))
+        if filename != 'wiki/wiki.features':
+            for i in range(X.shape[1]):
+                if np.sum(X[:, i]) > 0:
+                    X_tfidf[:,i] = X[:,i] * np.log(node_size/np.sum(X[:,i]))
+        else:
+            X_tfidf = X
         return X_tfidf
 
     def return_pos(self, a):
@@ -49,6 +52,19 @@ class R_Model():
         return R_x
 
     def rank_A(self, alpha = 0.1):
+        '''
+        S_1 = self.A
+        S_2 = np.dot(S_1, S_1.T)
+        S_3 = np.dot(S_2, S_1.T)
+        S_2[S_2>0] = alpha
+        S_3[S_3>0] = alpha*alpha
+        S_23 = S_2+S_3
+        S_23[S_23>alpha] = alpha
+        S_123 = S_1 + S_23
+        S_123[S_123>1] = 1
+        S = S_123
+        return S
+        '''
         unreach = 0
         G = nx.read_edgelist(self.edgelist)
         k = nx.all_pairs_shortest_path_length(G)

@@ -44,7 +44,7 @@ class T_Model():
             }
             _, cur_loss = self.session.run([self.train_op, self.loss], feed_dict)
             sum_loss += cur_loss
-        print('epoch:{} sum of loss:{!s}'.format(self.cur_epoch, sum_loss))
+        #print('epoch:{} sum of loss:{!s}'.format(self.cur_epoch, sum_loss))
         self.cur_epoch += 1
         
     def batch_iter(self):
