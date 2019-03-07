@@ -69,7 +69,7 @@ class T_Model():
             vectors[i] = embedding
         return vectors
 
-#CPU training    
+#CPU training Matrix Factorization 
 def train(T, dim=50, epochs=20, lamb=0.2):
     M = T
     node_size = M.shape[0]
