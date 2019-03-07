@@ -36,12 +36,6 @@ class R_Model():
             X_tfidf = X
         return X_tfidf
 
-    def return_pos(self, a):
-        b = np.zeros(len(a))
-        for i in range(len(a)):
-            b[a[i]] = len(a)-1-i
-        return b
-
     def rank_X(self):
         Sim = np.dot(self.X, self.X.T)
         R_x = np.zeros_like(Sim)
@@ -52,19 +46,6 @@ class R_Model():
         return R_x
 
     def rank_A(self, alpha = 0.1):
-        '''
-        S_1 = self.A
-        S_2 = np.dot(S_1, S_1.T)
-        S_3 = np.dot(S_2, S_1.T)
-        S_2[S_2>0] = alpha
-        S_3[S_3>0] = alpha*alpha
-        S_23 = S_2+S_3
-        S_23[S_23>alpha] = alpha
-        S_123 = S_1 + S_23
-        S_123[S_123>1] = 1
-        S = S_123
-        return S
-        '''
         unreach = 0
         G = nx.read_edgelist(self.edgelist)
         k = nx.all_pairs_shortest_path_length(G)
@@ -79,3 +60,9 @@ class R_Model():
                     else:
                         SP[i,j] = np.power(alpha, 1)
         return SP
+    
+    def return_pos(self, a):
+        b = np.zeros(len(a))
+        for i in range(len(a)):
+            b[a[i]] = len(a)-1-i
+        return b
