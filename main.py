@@ -18,10 +18,10 @@ alpha = 0.1
 R_Model = R_Model(edgelist='cora/cora.edgelist', features='cora/cora.features')
 
 #ranking
-R_x = R_Model.rank_X()
+R_X = R_Model.rank_X()
 R_A = R_Model.rank_A(alpha=alpha)
 #mapping
-T = mapping(vector=R_x, a=1, b=0, c=C_x)*mapping(vector=R_A, a=1, b=1, c=C_a)
+T = mapping(vector=R_X, a=1, b=0, c=C_x)*mapping(vector=R_A, a=1, b=1, c=C_a)
 T = normalize(T)
 #training
 RANE = T_Model(T)
